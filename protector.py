@@ -11,7 +11,7 @@ class Show(object):
         self.storage = storage
         self.codename = codename
     def episodes(self):
-        return [Episode(self, i) for i in os.listdir(os.path.join(self.storage.path, self.codename)) if os.path.isfile(i) and str(mimetypes.guess_type(os.path.join(self.storage.path, self.codename, i), strict=False)[0]).startswith("video/")]
+        return [Episode(self, i) for i in os.listdir(os.path.join(self.storage.path, self.codename)) if os.path.isfile(os.path.join(self.storage.path, self.codename, i)) and str(mimetypes.guess_type(os.path.join(self.storage.path, self.codename, i), strict=False)[0]).startswith("video/")]
 
 class Storage(object):
     def __init__(self, path):
