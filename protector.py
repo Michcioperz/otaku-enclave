@@ -9,6 +9,7 @@ class Episode(object):
 class Show(object):
     def __init__(self, storage, codename):
         self.storage = storage
+        self.codename = codename
     def episodes(self):
         return [Episode(self, i) for i in os.listdir(os.path.join(self.storage.path, self.codename)) if os.path.isfile(i) and str(mimetypes.guess_type(os.path.join(self.storage.path, self.codename, i), strict=False)[0]).startswith("video/")]
 
