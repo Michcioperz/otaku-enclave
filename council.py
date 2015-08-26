@@ -1,0 +1,3 @@
+STORAGES = [
+    ("/animenclave", "animenclave"),
+]

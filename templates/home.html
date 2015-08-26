@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+        <style>
+          @media (max-width: 992px) {
+            .card {
+              height: 250px;
+            }
+          }
+        </style>
+        <title>Otaku Enclave</title>
+    </head>
+    <body>
+      <header class="navbar-fixed">
+        <nav class="black">
+          <div class="nav-wrapper">
+            <a href="#!" class="brand-logo center">Otaku Enclave</a>
+            <a href="#" data-activates="sidebar" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="side-nav" id="sidebar">
+            </ul>
+            <ul class="hide-on-med-and-down">
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <div id="stuff" class="row">
+        {% for show in shows %}
+        <div class="col s6 m4 l2">
+          <div class="card-panel">
+            <h1>{{ show.codename }}</h1>
+            {% for episode in show.episodes() %}
+            <a class="btn waves-effect" href="/storage/{{ show.storage.codename }}/{{ show.codename }}/{{ episode.filename }}">{{ episode.filename }}</a>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/materialize.min.js"></script>
+      <script type="text/javascript">
+        $(document).ready(function() {
+          $(".button-collapse").sideNav({closeOnClick: true});
+        });
+      </script>
+    </body>
+</html>
