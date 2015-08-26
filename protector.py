@@ -16,4 +16,4 @@ class Storage(object):
     def __init__(self, path):
         self.path = path
     def shows(self):
-        return [Show(self, h) for h in os.listdir(self.path) if os.path.isdir(h) and len([e for e in [str(mimetypes.guess_type(os.path.join(self.path, h, f), strict=False)[0]) for f in os.listdir(os.path.join(self.path, h))] if e.startswith("video/")]) > 0] # TODO drop the bass
+        return [Show(self, h) for h in os.listdir(self.path) if os.path.isdir(os.path.join(self.path, h)) and len([e for e in [str(mimetypes.guess_type(os.path.join(self.path, h, f), strict=False)[0]) for f in os.listdir(os.path.join(self.path, h))] if e.startswith("video/")]) > 0] # TODO drop the bass
