@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
-import council, protector, render_template
-from flask import Flask
+import council, protector
+from flask import Flask, render_template
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
 def storages():
-    return [protector.Storage(data) for data in council.STORAGES]
+    return [protector.Storage(*data) for data in council.STORAGES]
 
 def all_shows():
     shows = []
     for storage in storages():
-        shows += storage.shows()
+        shows.extend(storage.shows())
     return shows
 
 @app.route("/")
