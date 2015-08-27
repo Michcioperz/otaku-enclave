@@ -5,13 +5,19 @@ from flask import Flask, render_template
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
-def storages():
-    return [protector.Storage(*data) for data in council.STORAGES]
 
 def all_shows():
     shows = []
-    for storage in storages():
-        shows.extend(storage.shows())
+    for storage in council.STORAGES:
+        shows += storage.shows()
+    return shows
+
+def datafy_all_shows(shows=None):
+    if shows is None:
+        shows = all_shows()
+    for show in shows:
+        for provider in council.DATA_PROVIDERS:
+            provider.show_datafy(show)
     return shows
 
 @app.route("/")

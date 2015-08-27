@@ -1,3 +1,10 @@
+import protector
+from extensions.animetwist import AnimeTwistDataProvider
+
 STORAGES = [
-    ("/animenclave", "animenclave"),
+    protector.Storage("/animenclave", "animenclave"),
+]
+
+DATA_PROVIDERS = [
+    AnimeTwistDataProvider(),
 ]
